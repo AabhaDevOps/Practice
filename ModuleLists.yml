@@ -1,0 +1,12 @@
+---
+
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  tasks:
+    - name: install some packages
+      yum:
+        name: ['git', 'httpd', 'vim']        
+        state: installed
+      when: ansible_distribution_file_variety == 'RedHat'

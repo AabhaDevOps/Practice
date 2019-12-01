@@ -1,0 +1,19 @@
+---
+
+- hosts: all
+  become: yes
+  become_user: root
+  become_method: sudo
+  vars:
+   day_time: Evening
+  tasks:
+    - name: My test Template
+      template:
+        src: template_new1.j2
+        dest: /var/www/html/index.html
+
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+  
